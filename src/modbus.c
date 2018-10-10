@@ -1338,8 +1338,7 @@ int modbus_write_registers(modbus_t *ctx, int addr, int nb, const uint16_t *src)
     int rc;
     int i;
     int req_length;
-    int byte_count;
-
+    //int byte_count;
     uint8_t req[MAX_MESSAGE_LENGTH];
 
     if (nb > MODBUS_MAX_WRITE_REGISTERS) {
@@ -1353,14 +1352,16 @@ int modbus_write_registers(modbus_t *ctx, int addr, int nb, const uint16_t *src)
     }
 
     req_length = ctx->backend->build_request_basis(ctx,
-                                                   _FC_WRITE_MULTIPLE_REGISTERS,
-                                                   addr, nb, req, _COMMAND_READ, _SUBCOMMAND_WORDS);
-    byte_count = nb * 2;
-    req[req_length++] = byte_count;
+                                                   _WRITE_D,
+                                                   addr, nb, req, _COMMAND_WRITE, _SUBCOMMAND_WORDS);
+    //byte_count = nb * 2;
+    //req[req_length++] = byte_count;      /*灏：注释掉是因为MC的报文中没有“字节个数”这一项。*/
 
     for (i = 0; i < nb; i++) {
-        req[req_length++] = src[i] >> 8;
-        req[req_length++] = src[i] & 0x00FF;
+     //   req[req_length++] = src[i] >> 8;
+     //  req[req_length++] = src[i] & 0x00FF;
+     req[req_length++] = src[i] & 0x00FF;
+	 req[req_length++] = src[i] >> 8;      /* MC报文中先低位，后高位 */
     }
 
     rc = send_msg(ctx, req, req_length);

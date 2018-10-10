@@ -59,6 +59,12 @@ MODBUS_BEGIN_DECLS
 #define  _READ_X      0x9C
 #define  _READ_Y      0x9D
 
+#define  _WRITE_D	  0xA8
+#define  _WRITE_M     0x90
+#define  _WRITE_X     0x9C
+#define  _WRITE_Y     0x9D
+
+
 #define  _COMMAND_READ          0x0401
 #define  _COMMAND_WRITE         0x1401
 #define  _SUBCOMMAND_WORDS      0x0000
