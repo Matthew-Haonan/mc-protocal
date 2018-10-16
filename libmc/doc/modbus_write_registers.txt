@@ -1,0 +1,39 @@
+mc_write_registers(3)
+=========================
+
+
+NAME
+----
+mc_write_registers - write many registers
+
+
+SYNOPSIS
+--------
+*int mc_write_registers(mc_t *'ctx', int 'addr', int 'nb', const uint16_t *'src');*
+
+
+DESCRIPTION
+-----------
+The _mc_write_registers()_ function shall write the content of the 'nb'
+holding registers from the array 'src' at address 'addr' of the
+remote device.
+
+The function uses the Mc function code 0x10 (preset multiple registers).
+
+
+RETURN VALUE
+------------
+The _mc_write_registers()_ function shall return the number of written
+registers if successful. Otherwise it shall return -1 and set errno.
+
+
+SEE ALSO
+--------
+linkmb:mc_write_register[3]
+linkmb:mc_read_registers[3]
+
+
+AUTHORS
+-------
+The libmc documentation was written by Stéphane Raimbault
+<stephane.raimbault@gmail.com>

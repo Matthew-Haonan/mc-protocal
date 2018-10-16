@@ -1,0 +1,70 @@
+mc_tcp_listen(3)
+====================
+
+
+NAME
+----
+mc_tcp_listen - create and listen a TCP Mc socket
+
+
+SYNOPSIS
+--------
+*int mc_tcp_listen(mc_t *'ctx', int 'nb_connection');*
+
+
+DESCRIPTION
+-----------
+The _mc_tcp_listen()_ function shall create a socket and listen for
+'nb_connection' incoming connections.
+
+
+RETURN VALUE
+------------
+The _mc_tcp_listen()_ function shall return a new socket if
+successful. Otherwise it shall return -1 and set errno.
+
+
+EXAMPLE
+-------
+For a detailed example, see source file bandwith-server-many-up.c provided in
+tests directory.
+
+[source,c]
+-------------------
+...
+
+ctx = mc_new_tcp("127.0.0.1", 502);
+if (mc_connect(ctx) == -1) {
+    fprintf(stderr, "Connection failed: %s\n", mc_strerror(errno));
+    mc_free(ctx);
+    return -1;
+}
+
+/* Handle until 10 established connections */
+server_socket = mc_tcp_listen(ctx, 10);
+
+/* Clear the reference set of socket */
+FD_ZERO(&refset);
+
+/* Add the server socket */
+FD_SET(server_socket, &refset);
+
+if (select(server_socket + 1, &refset, NULL, NULL, NULL) == -1) {
+}
+
+...
+
+close(server_socket);
+mc_free(ctx);
+-------------------
+
+SEE ALSO
+--------
+linkmb:mc_tcp_accept[3]
+linkmb:mc_tcp_pi_accept[3]
+linkmb:mc_tcp_pi_listen[3]
+
+AUTHORS
+-------
+The libmc documentation was written by Stéphane Raimbault
+<stephane.raimbault@gmail.com>

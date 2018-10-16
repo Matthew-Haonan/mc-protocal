@@ -1,0 +1,52 @@
+mc_connect(3)
+=================
+
+
+NAME
+----
+mc_connect - establish a Mc connection
+
+
+SYNOPSIS
+--------
+*int mc_connect(mc_t *'ctx');*
+
+
+DESCRIPTION
+-----------
+The _mc_connect()_ function shall etablish a connection to a Mc server,
+a network or a bus using the context information of libmc context given in
+argument.
+
+
+RETURN VALUE
+------------
+The mc_connect() function shall return 0 if successful. Otherwise it shall
+return -1 and set errno to one of the values defined by the system calls of the
+underlying platform.
+
+
+EXAMPLE
+-------
+[source,c]
+-------------------
+mc_t *ctx;
+
+ctx = mc_new_tcp("127.0.0.1", 502);
+if (mc_connect(ctx) == -1) {
+    fprintf(stderr, "Connection failed: %s\n", mc_strerror(errno));
+    mc_free(ctx);
+    return -1;
+}
+-------------------
+
+
+SEE ALSO
+--------
+linkmb:mc_close[3]
+
+
+AUTHORS
+-------
+The libmc documentation was written by Stéphane Raimbault
+<stephane.raimbault@gmail.com>

@@ -1,0 +1,51 @@
+mc_read_input_registers(3)
+==============================
+
+
+NAME
+----
+mc_read_input_registers - read many input registers
+
+
+SYNOPSIS
+--------
+*int mc_read_input_registers(mc_t *'ctx', int 'addr', int 'nb', uint16_t *'dest');*
+
+
+DESCRIPTION
+-----------
+The _mc_read_input_registers()_ function shall read the content of the 'nb'
+input registers to address 'addr' of the remote device. The result of the
+reading is stored in 'dest' array as word values (16 bits).
+
+You must take care to allocate enough memory to store the results in 'dest' (at
+least 'nb' * sizeof(uint16_t)).
+
+The function uses the Mc function code 0x04 (read input registers). The
+holding registers and input registers have different historical meaning, but
+nowadays it's more common to use holding registers only.
+
+
+RETURN VALUE
+------------
+The _mc_read_input_registers()_ function shall return the number of read
+input registers if successful. Otherwise it shall return -1 and set errno.
+
+
+ERRORS
+------
+EMBMDATA::
+Too many bits requested
+
+
+SEE ALSO
+--------
+linkmb:mc_read_input_bits[3]
+linkmb:mc_write_register[3]
+linkmb:mc_write_registers[3]
+
+
+AUTHORS
+-------
+The libmc documentation was written by Stéphane Raimbault
+<stephane.raimbault@gmail.com>

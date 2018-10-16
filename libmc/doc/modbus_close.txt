@@ -1,0 +1,51 @@
+mc_close(3)
+===============
+
+
+NAME
+----
+mc_close - close a Mc connection
+
+
+SYNOPSIS
+--------
+*void mc_close(mc_t *'ctx');*
+
+
+DESCRIPTION
+-----------
+The _mc_close()_ function shall close the connection established with the
+backend set in the context.
+
+
+RETURN VALUE
+------------
+There is no return value.
+
+
+EXAMPLE
+-------
+[source,c]
+-------------------
+mc_t *ctx;
+
+ctx = mc_new_tcp("127.0.0.1", 502);
+if (mc_connect(ctx) == -1) {
+    fprintf(stderr, "Connection failed: %s\n", mc_strerror(errno));
+    mc_free(ctx);
+    return -1;
+}
+
+mc_close(ctx);
+mc_free(ctx);
+-------------------
+
+SEE ALSO
+--------
+linkmb:mc_connect[3]
+
+
+AUTHORS
+-------
+The libmc documentation was written by Stéphane Raimbault
+<stephane.raimbault@gmail.com>

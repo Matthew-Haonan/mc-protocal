@@ -1,0 +1,33 @@
+mc_free(3)
+==============
+
+
+NAME
+----
+mc_free - free a libmc context
+
+
+SYNOPSIS
+--------
+*void mc_free(mc_t *'ctx');*
+
+
+DESCRIPTION
+-----------
+The _mc_free()_ function shall free an allocated mc_t structure.
+
+
+RETURN VALUE
+------------
+There is no return values.
+
+
+SEE ALSO
+--------
+linkmb:libmc[3]
+
+
+AUTHORS
+-------
+The libmc documentation was written by Stéphane Raimbault
+<stephane.raimbault@gmail.com>

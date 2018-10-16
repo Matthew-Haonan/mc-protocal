@@ -1,0 +1,34 @@
+mc_get_socket(3)
+====================
+
+
+NAME
+----
+mc_get_socket - get the current socket of the context
+
+
+SYNOPSIS
+--------
+*int mc_get_socket(mc_t *'ctx');*
+
+
+DESCRIPTION
+-----------
+The _mc_get_socket()_ function shall return the current socket or file
+descriptor of the libmc context.
+
+
+RETURN VALUE
+------------
+The current socket or file descriptor of the context.
+
+
+SEE ALSO
+--------
+linkmb:mc_set_socket[3]
+
+
+AUTHORS
+-------
+The libmc documentation was written by Stéphane Raimbault
+<stephane.raimbault@gmail.com>

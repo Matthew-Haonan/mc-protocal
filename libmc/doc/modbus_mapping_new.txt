@@ -1,0 +1,64 @@
+mc_mapping_new(3)
+=====================
+
+
+NAME
+----
+mc_mapping_new - allocate four arrays of bits and registers
+
+
+SYNOPSIS
+--------
+*mc_mapping_t* mc_mapping_new(int 'nb_bits', int 'nb_input_bits', int 'nb_registers', int 'nb_input_registers');*
+
+
+DESCRIPTION
+-----------
+The _mc_mapping_new()_ function shall allocate four arrays to store bits,
+input bits, registers and inputs registers. The pointers are stored in
+mc_mapping_t structure. All values of the arrays are initialized to zero.
+
+If it isn't necessary to allocate an array for a specific type of data, you can
+pass the zero value in argument, the associated pointer will be NULL.
+
+This function is convenient to handle requests in a Mc server/slave.
+
+
+RETURN VALUE
+------------
+The _mc_mapping_new()_ function shall return the new allocated structure if
+successful. Otherwise it shall return NULL and set errno.
+
+
+ERRORS
+------
+ENOMEM::
+Not enough memory
+
+
+EXAMPLE
+-------
+[source,c]
+-------------------
+/* The fist value of each array is accessible from the 0 address. */
+mb_mapping = mc_mapping_new(BITS_ADDRESS + BITS_NB,
+                                INPUT_BITS_ADDRESS + INPUT_BITS_NB,
+                                REGISTERS_ADDRESS + REGISTERS_NB,
+                                INPUT_REGISTERS_ADDRESS + INPUT_REGISTERS_NB);
+if (mb_mapping == NULL) {
+    fprintf(stderr, "Failed to allocate the mapping: %s\n",
+            mc_strerror(errno));
+    mc_free(ctx);
+    return -1;
+}
+-------------------
+
+SEE ALSO
+--------
+linkmb:mc_mapping_free[3]
+
+
+AUTHORS
+-------
+The libmc documentation was written by Stéphane Raimbault
+<stephane.raimbault@gmail.com>
