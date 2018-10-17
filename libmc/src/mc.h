@@ -165,14 +165,14 @@ void mc_set_debug(mc_t *ctx, int boolean);
 
 const char *mc_strerror(int errnum);            /*本函数为返回指针值的函数*/
 
-int mc_read_bits(mc_t *ctx, int addr, int nb, uint8_t *dest);
+int mc_read_bits_bm(mc_t *ctx, int addr, int nb, uint8_t *dest);
 int mc_read_input_bits(mc_t *ctx, int addr, int nb, uint8_t *dest);
-int mc_read_registers(mc_t *ctx, int addr, int nb, uint16_t *dest);
+int mc_read_registers_bd(mc_t *ctx, int addr, int nb, uint16_t *dest);
 int mc_read_input_registers(mc_t *ctx, int addr, int nb, uint16_t *dest);
 int mc_write_bit(mc_t *ctx, int coil_addr, int status);
 int mc_write_register(mc_t *ctx, int reg_addr, int value);
-int mc_write_bits(mc_t *ctx, int addr, int nb, const uint8_t *data);
-int mc_write_registers(mc_t *ctx, int addr, int nb, const uint16_t *data);
+int mc_write_bits_bm(mc_t *ctx, int addr, int nb, const uint8_t *data);
+int mc_write_registers_bd(mc_t *ctx, int addr, int nb, const uint16_t *data);
 int mc_write_and_read_registers(mc_t *ctx, int write_addr, int write_nb,
                                     const uint16_t *src, int read_addr, int read_nb,
                                     uint16_t *dest);
