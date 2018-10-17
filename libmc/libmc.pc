@@ -1,0 +1,10 @@
+prefix=/home/haonan/workspace/libmc
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: mc
+Description: Mc library
+Version: 3.0.6
+Libs: -L${libdir} -lmc
+Cflags: -I${includedir}/mc
